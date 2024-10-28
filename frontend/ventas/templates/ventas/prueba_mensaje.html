@@ -1,0 +1,16 @@
+{% extends 'ventas/base.html' %}
+
+{% block content %}
+<h2>Prueba de Mensaje</h2>
+<form action="{% url 'prueba_mensaje' %}" method="post">
+    {% csrf_token %}
+    <label for="mensaje">Mensaje:</label>
+    <textarea name="mensaje" id="mensaje" rows="5" cols="80" placeholder="Ingresa el mensaje aquí..."></textarea>
+    <button type="submit">Analizar</button>
+</form>
+
+{% if resultado %}
+    <h3>Resultado del Análisis:</h3>
+    <pre>{{ resultado }}</pre>
+{% endif %}
+{% endblock %}

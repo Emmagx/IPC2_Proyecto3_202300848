@@ -1,0 +1,51 @@
+{% extends 'ventas/base.html' %}
+{% block content %}
+<h2>Resumen de Clasificación por Rango de Fechas</h2>
+<form action="{% url 'resumen_rango_fechas' %}" method="post">
+    {% csrf_token %}
+    <label for="fecha_inicio">Fecha Inicio:</label>
+    <input type="date" name="fecha_inicio" id="fecha_inicio" required>
+
+    <label for="fecha_fin">Fecha Fin:</label>
+    <input type="date" name="fecha_fin" id="fecha_fin" required>
+
+    <label for="empresa">Empresa (opcional):</label>
+    <input type="text" name="empresa" id="empresa" placeholder="Dejar vacío para todas las empresas">
+
+    <button type="submit">Consultar</button>
+</form>
+
+<!-- {% if datos_rango %}
+    <canvas id="grafico_rango"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctxRango = document.getElementById('grafico_rango').getContext('2d');
+        const chartRango = new Chart(ctxRango, {
+            type: 'line',
+            data: {
+                labels: {{ datos_rango.fechas|safe }},
+                datasets: [
+                    {
+                        label: 'Positivos',
+                        data: {{ datos_rango.positivos|safe }},
+                        borderColor: '#4caf50',
+                        fill: false
+                    },
+                    {
+                        label: 'Negativos',
+                        data: {{ datos_rango.negativos|safe }},
+                        borderColor: '#f44336',
+                        fill: false
+                    },
+                    {
+                        label: 'Neutros',
+                        data: {{ datos_rango.neutros|safe }},
+                        borderColor: '#ffeb3b',
+                        fill: false
+                    }
+                ]
+            }
+        });
+    </script>
+{% endif %}
+{% endblock %} -->

@@ -1,0 +1,13 @@
+{% extends 'ventas/base.html' %}
+
+{% block content %}
+    <h2>Resumen de Ventas Procesadas</h2>
+    {% if xml_resumen %}
+        <h3>Contenido del XML de Salida:</h3>
+        <div style="white-space: pre-wrap; border: 1px solid #ddd; padding: 10px; background-color: #f9f9f9;">
+            <pre>{{ xml_resumen}}</pre>
+        </div>
+    {% else %}
+        <p>{{ error }}</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lista_respuestas>
+  <respuesta>
+    <mensajes>
+      <total>20</total>
+      <positivos>0</positivos>
+      <negativos>0</negativos>
+      <neutros>0</neutros>
+    </mensajes>
+    <analisis/>
+  </respuesta>
+</lista_respuestas>

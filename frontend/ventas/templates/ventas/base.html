@@ -1,0 +1,30 @@
+
+<!-- ventas/templates/ventas/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Clasificación de Mensajes</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li><a href="{% url 'cargar_archivo' %}">Cargar Archivo</a></li>
+            <li><a href="{% url 'consultar_datos' %}">Consultar Datos</a></li>
+            <li><a href="{% url 'resumen_clasificacion_fecha' %}">Resumen por Fecha</a></li>
+            <li><a href="{% url 'resumen_rango_fechas' %}">Resumen por Rango de Fechas</a></li>
+            <li><a href="{% url 'reporte_pdf' %}">Reporte PDF</a></li>
+            <li><a href="{% url 'prueba_mensaje' %}">Prueba de Mensaje</a></li>
+            <li><a href="{% url 'ayuda' %}">Ayuda</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

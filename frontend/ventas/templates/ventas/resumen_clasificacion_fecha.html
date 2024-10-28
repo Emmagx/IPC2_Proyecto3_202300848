@@ -1,0 +1,33 @@
+{% extends 'ventas/base.html' %}
+{% block content %}
+<h2>Resumen de Clasificación por Fecha</h2>
+<form action="{% url 'resumen_clasificacion_fecha' %}" method="post">
+    {% csrf_token %}
+    <label for="fecha">Fecha:</label>
+    <input type="date" name="fecha" id="fecha" required>
+
+    <label for="empresa">Empresa (opcional):</label>
+    <input type="text" name="empresa" id="empresa" placeholder="Dejar vacío para todas las empresas">
+
+    <button type="submit">Consultar</button>
+</form>
+
+<!-- {% if datos_grafico %}
+    <canvas id="grafico"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('grafico').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Positivos', 'Negativos', 'Neutros'],
+                datasets: [{
+                    label: 'Resumen de Mensajes',
+                    data: [{{ datos_grafico.positivos }}, {{ datos_grafico.negativos }}, {{ datos_grafico.neutros }}],
+                    backgroundColor: ['#4caf50', '#f44336', '#ffeb3b']
+                }]
+            }
+        });
+    </script>
+{% endif %}
+{% endblock %} -->

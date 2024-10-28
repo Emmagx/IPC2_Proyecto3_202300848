@@ -1,0 +1,9 @@
+{% extends 'ventas/base.html' %}
+
+{% block content %}
+<h2>Generar Reporte en PDF</h2>
+<form action="{% url 'reporte_pdf' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Generar PDF</button>
+</form>
+{% endblock %}

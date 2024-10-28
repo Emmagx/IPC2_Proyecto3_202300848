@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solicitud_clasificacion>
+    <diccionario>
+        <sentimientos_positivos>
+            <palabra>excelente</palabra>
+            <palabra>bueno</palabra>
+            <palabra>genial</palabra>
+            <palabra>agradable</palabra>
+            <palabra>satisfactorio</palabra>
+            <palabra>feliz</palabra>
+            <palabra>contento</palabra>
+        </sentimientos_positivos>
+        <sentimientos_negativos>
+            <palabra>malo</palabra>
+            <palabra>horrible</palabra>
+            <palabra>terrible</palabra>
+            <palabra>insuficiente</palabra>
+            <palabra>desagradable</palabra>
+            <palabra>molesto</palabra>
+            <palabra>decepcionado</palabra>
+        </sentimientos_negativos>
+        <empresas_analizar>
+            <empresa>
+                <nombre>USAC</nombre>
+                <servicios>
+                    <servicio nombre="inscripción">
+                        <alias>inscribir</alias>
+                        <alias>inscrito</alias>
+                        <alias>inscripción</alias>
+                    </servicio>
+                    <servicio nombre="asignación">
+                        <alias>asignar</alias>
+                        <alias>asignado</alias>
+                    </servicio>
+                    <servicio nombre="graduación">
+                        <alias>graduar</alias>
+                        <alias>graduación</alias>
+                    </servicio>
+                </servicios>
+            </empresa>
+            <empresa>
+                <nombre>Banco Nacional</nombre>
+                <servicios>
+                    <servicio nombre="cuenta">
+                        <alias>cuenta</alias>
+                        <alias>ahorro</alias>
+                    </servicio>
+                    <servicio nombre="tarjeta de crédito">
+                        <alias>tarjeta</alias>
+                        <alias>crédito</alias>
+                    </servicio>
+                    <servicio nombre="préstamo">
+                        <alias>préstamo</alias>
+                        <alias>crédito personal</alias>
+                    </servicio>
+                </servicios>
+            </empresa>
+        </empresas_analizar>
+    </diccionario>
+    <lista_mensajes>
+        <mensaje>
+            Lugar y fecha: Guatemala, 01/04/2022 15:01 
+            Usuario: user001@usac.edu 
+            Red social: Twitter 
+            El servicio de inscripción en la USAC fue excelente y muy satisfactorio.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 02/04/2022 12:15 
+            Usuario: user002 
+            Red social: Facebook 
+            Hoy abrí una cuenta en el Banco Nacional. El servicio fue bueno, aunque el proceso algo lento.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 03/04/2022 10:25 
+            Usuario: user003@usac.edu 
+            Red social: WhatsApp 
+            Intenté usar mi tarjeta de crédito del Banco Nacional pero fue un desastre, no me funcionó.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 04/04/2022 18:40 
+            Usuario: user004 
+            Red social: Instagram 
+            La graduación en la USAC fue genial, un evento muy agradable y bien organizado.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 05/04/2022 09:05 
+            Usuario: user005 
+            Red social: LinkedIn 
+            Siento que el proceso de inscripción en la USAC es insuficiente, muy decepcionado con el sistema.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 06/04/2022 14:32 
+            Usuario: user006 
+            Red social: Twitter 
+            Me molestó mucho la atención en el Banco Nacional con respecto a mi préstamo, terrible servicio.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 07/04/2022 11:20 
+            Usuario: user007 
+            Red social: Facebook 
+            Ya terminé mi inscripción en la USAC y todo salió excelente, muy feliz.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 08/04/2022 16:50 
+            Usuario: user008 
+            Red social: WhatsApp 
+            Hoy abrí una nueva cuenta en el Banco Nacional y el servicio fue muy bueno, me siento contento.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 09/04/2022 08:00 
+            Usuario: user009 
+            Red social: Twitter 
+            La tarjeta de crédito que me dieron en el Banco Nacional no me sirve, muy molesto con el banco.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 10/04/2022 13:40 
+            Usuario: user010 
+            Red social: Instagram 
+            Asigné mis cursos en la USAC y fue un proceso genial, muy agradable y eficiente.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 11/04/2022 17:15 
+            Usuario: user011 
+            Red social: LinkedIn 
+            Hoy intenté graduarme en la USAC y aunque fue un evento bonito, la organización fue insuficiente.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 12/04/2022 12:30 
+            Usuario: user012 
+            Red social: Facebook 
+            Me decepcioné con el Banco Nacional, intenté abrir una cuenta y fue un proceso terrible.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 13/04/2022 09:45 
+            Usuario: user013 
+            Red social: WhatsApp 
+            La inscripción en la USAC fue un éxito, un proceso satisfactorio y rápido.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 14/04/2022 14:10 
+            Usuario: user014 
+            Red social: Twitter 
+            Probé el servicio de préstamo en el Banco Nacional y me siento satisfecho con el trato.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 15/04/2022 11:25 
+            Usuario: user015 
+            Red social: Instagram 
+            Hoy inicié el proceso de asignación en la USAC y aunque fue un poco lento, el servicio fue agradable.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 16/04/2022 18:35 
+            Usuario: user016 
+            Red social: LinkedIn 
+            Decepcionado con el Banco Nacional, el servicio de tarjeta de crédito no cumple mis expectativas.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 17/04/2022 10:05 
+            Usuario: user017 
+            Red social: Facebook 
+            Me inscribí en la USAC y todo fue excelente, un proceso genial.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 18/04/2022 15:50 
+            Usuario: user018 
+            Red social: WhatsApp 
+            Solicité un préstamo en el Banco Nacional y el servicio fue bueno, aunque algo lento.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 19/04/2022 09:30 
+            Usuario: user019 
+            Red social: Twitter 
+            Muy molesto con la USAC, la asignación de cursos fue un desastre.
+        </mensaje>
+        <mensaje>
+            Lugar y fecha: Guatemala, 20/04/2022 13:20 
+            Usuario: user020 
+            Red social: Instagram 
+            El proceso de graduación en la USAC fue excelente, estoy feliz de haber participado.
+        </mensaje>
+    </lista_mensajes>
+</solicitud_clasificacion>

@@ -1,0 +1,89 @@
+{% extends 'ventas/base.html' %}
+
+{% block content %}
+<h2>Cargar Archivo</h2>
+<form id="formArchivo" enctype="multipart/form-data">
+    <label for="archivo">Selecciona un archivo XML:</label>
+    <input type="file" id="archivo" accept=".xml" onchange="mostrarContenido(event)">
+    <button type="button" onclick="enviarContenido()">Enviar</button>
+    <button type="button" onclick="limpiarSalida()">Limpiar</button>
+</form>
+
+<div class="contenedor-principal">
+    <div class="contenedor-columnas">
+        <div class="contenedor-archivo">
+            <h3>Contenido del Archivo</h3>
+            <textarea id="contenidoArchivo" style="width: 100%; height: 200px;"></textarea>
+        </div>
+        <div class="contenedor-salida">
+            <h3>Salida de la API</h3>
+<textarea id="contenidoSalida" style="width: 100%; height: 200px;" readonly></textarea>
+        </div>
+    </div>
+</div>
+
+<script>
+function mostrarContenido(event) {
+    const archivo = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('contenidoArchivo').value = e.target.result;
+    };
+    reader.readAsText(archivo);
+}
+
+function enviarContenido() {
+    const contenidoArchivo = document.getElementById('contenidoArchivo').value;
+    fetch("{% url 'cargar_archivo' %}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}'  // Django CSRF Token
+        },
+        body: JSON.stringify({ contenidoArchivo })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Mostrar la respuesta de la API en el contenedor de salida
+        document.getElementById('contenidoSalida').value = data.mensaje || 'Archivo procesado correctamente.';
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('contenidoSalida').value = 'Error al procesar el archivo.';
+    });
+}
+
+function limpiarSalida() {
+    document.getElementById('contenidoArchivo').value = '';
+    document.getElementById('contenidoSalida').value = '';
+    localStorage.removeItem('contenidoArchivo');
+    localStorage.removeItem('contenidoSalida');
+}
+
+// Función para guardar el contenido en localStorage
+function guardarContenido() {
+    const contenidoArchivo = document.getElementById('contenidoArchivo').value;
+    const contenidoSalida = document.getElementById('contenidoSalida').value;
+    localStorage.setItem('contenidoArchivo', contenidoArchivo);
+    localStorage.setItem('contenidoSalida', contenidoSalida);
+}
+
+// Función para cargar el contenido guardado
+function cargarContenido() {
+    if (localStorage.getItem('contenidoArchivo')) {
+        document.getElementById('contenidoArchivo').value = localStorage.getItem('contenidoArchivo');
+    }
+    if (localStorage.getItem('contenidoSalida')) {
+        document.getElementById('contenidoSalida').value = localStorage.getItem('contenidoSalida');
+    }
+}
+
+document.getElementById('contenidoArchivo').addEventListener('input', guardarContenido);
+document.getElementById('contenidoSalida').addEventListener('input', guardarContenido);
+window.onload = cargarContenido;
+</script>
+
+{% if mensaje %}
+    <p>{{ mensaje }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% block content %}
+    <h2>Error al Cargar el Archivo</h2>
+    <p>{{ error }}</p>
+    <br>
+    <a href="{% url 'upload_file' %}">Volver a intentar</a>
+{% endblock %}
