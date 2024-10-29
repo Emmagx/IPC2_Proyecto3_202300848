@@ -40,14 +40,19 @@ def cargar_archivo(request):
     return render(request, 'ventas/cargar_archivo.html', {'salida': salida})
 
 def consultar_datos(request):
-    # Suponiendo que hay un endpoint en Flask para obtener los datos procesados
-    response = requests.get(f"{API_BASE_URL}/datos_procesados")
-    if response.status_code == 200:
-        datos_consultados = response.json()
-    else:
-        datos_consultados = "No se pudo obtener los datos procesados"
+    contenido_salida = ""
     
-    return render(request, 'ventas/consultar_datos.html', {'datos_consultados': datos_consultados})
+    if request.method == 'POST':
+        # Realizar la solicitud POST para obtener los datos procesados
+        response = requests.post(f"{API_BASE_URL}/datos_procesados")
+        
+        if response.status_code == 200:
+            data = response.json()
+            contenido_salida = data.get('content', '')
+        else:
+            contenido_salida = "No se pudo obtener los datos procesados"
+    
+    return render(request, 'ventas/consultar_datos.html', {'contenido_salida': contenido_salida})
 
 def resumen_clasificacion_fecha(request):
     if request.method == 'POST':

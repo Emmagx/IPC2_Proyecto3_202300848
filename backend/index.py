@@ -45,14 +45,17 @@ def analizar_mensaje():
 
 @app.route('/datos_procesados', methods=['POST'])
 def datos_procesados():
-    data = request.get_json()
-    mensaje = data['mensaje']
+    output_path = os.path.join("output", "salida.xml")
+    if not os.path.exists(output_path):
+        return jsonify({"message": "No se encontraron datos procesados"}), 404
     
-    # Ejecutar la función de análisis del mensaje
-    resultado = classify_message(diccionario={}, mensaje=mensaje)  # Modifica según tu implementación
+    # Leer el contenido del archivo XML
+    with open(output_path, 'r') as output_file:
+        contenido_salida = output_file.read()
 
-    # Enviar la respuesta en JSON
-    return jsonify(resultado), 200
+    return jsonify({
+        "content": contenido_salida
+    }), 200
 
 @app.route('/descargar_pdf') 
 def descargar_pdf():
