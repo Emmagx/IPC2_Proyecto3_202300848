@@ -111,7 +111,18 @@ def ayuda(request):
     return render(request, 'ventas/ayuda.html')
 
 def reporte_pdf(request):
-    return render(request, 'ventas/reporte_pdf.html')
+    pdf_path = f"{API_BASE_URL}/descargar_pdf" 
+
+    response = requests.get(pdf_path)
+
+    if response.status_code == 200:
+        # Devolver el PDF como respuesta
+        pdf_file = HttpResponse(response.content, content_type='application/pdf')
+        pdf_file['Content-Disposition'] = 'attachment; filename="reporte.pdf"'
+        return pdf_file
+    else:
+        return render(request, 'ventas/reporte_pdf.html', {'error': "No se pudo obtener el PDF."})
+
 
 def peticiones(request):
     return render(request, 'ventas/peticiones.html')

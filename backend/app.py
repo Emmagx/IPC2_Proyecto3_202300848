@@ -1,8 +1,10 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify,  send_file
 from lxml import etree
 import os
 from empresa import Empresa
 from mensaje import Mensaje
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
 app = Flask(__name__)
 
@@ -105,25 +107,51 @@ def generate_output_xml(resultados, output_path="salida.xml"):
     tree = etree.ElementTree(root)
     tree.write(output_path, pretty_print=True, xml_declaration=True, encoding="UTF-8")
 
-@app.route('/clasificar', methods=['POST'])
-def clasificar():
-    if 'file' not in request.files:
-        return jsonify({"message": "No se encontró el archivo"}), 400
 
-    file = request.files['file']
-    output_path = os.path.join("output", "salida.xml")
-    
-    diccionario, empresas, mensajes = parse_xml(file)
-    resultados = classify_message(diccionario, mensajes, empresas)
-    generate_output_xml(resultados, output_path)
-    
-    with open(output_path, 'r') as output_file:
-        contenido_salida = output_file.read()
+def generate_pdf_from_xml(xml_path, pdf_path):
+    # Cargar y parsear el archivo XML
+    tree = etree.parse(xml_path)
+    root = tree.getroot()
 
-    return jsonify({
-        "message": "Archivo procesado y salida generada",
-        "content": contenido_salida
-    }), 200
+    # Crear un PDF
+    c = canvas.Canvas(pdf_path, pagesize=letter)
+    width, height = letter
+
+    # Agregar título
+    c.setFont("Helvetica-Bold", 16)
+    c.drawString(100, height - 40, "Resumen de Clasificación")
+
+    # Agregar datos del XML
+    c.setFont("Helvetica", 12)
+    y_position = height - 60
+
+    # Mensajes generales
+    mensajes = root.find("respuesta/mensajes")
+    c.drawString(100, y_position, f"Total Mensajes: {mensajes.find('total').text}")
+    y_position -= 20
+    c.drawString(100, y_position, f"Mensajes Positivos: {mensajes.find('positivos').text}")
+    y_position -= 20
+    c.drawString(100, y_position, f"Mensajes Negativos: {mensajes.find('negativos').text}")
+    y_position -= 20
+    c.drawString(100, y_position, f"Mensajes Neutros: {mensajes.find('neutros').text}")
+    y_position -= 20
+
+    # Detallar empresas
+    for empresa in root.findall("respuesta/empresa"):
+        c.drawString(100, y_position, f"Empresa: {empresa.get('nombre')}")
+        y_position -= 20
+        mensajes_empresa = empresa.find("mensajes")
+        c.drawString(120, y_position, f"Total: {mensajes_empresa.find('total').text}")
+        y_position -= 20
+        c.drawString(120, y_position, f"Positivos: {mensajes_empresa.find('positivos').text}")
+        y_position -= 20
+        c.drawString(120, y_position, f"Negativos: {mensajes_empresa.find('negativos').text}")
+        y_position -= 20
+        c.drawString(120, y_position, f"Neutros: {mensajes_empresa.find('neutros').text}")
+        y_position -= 20
+
+    # Finalizar el PDF
+    c.save()
 
 if __name__ == '__main__':
     app.run(debug=True)

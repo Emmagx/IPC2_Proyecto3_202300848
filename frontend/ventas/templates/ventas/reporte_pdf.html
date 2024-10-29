@@ -2,8 +2,20 @@
 
 {% block extra_content %}
 <h2>Generar Reporte en PDF</h2>
+
 <form action="{% url 'reporte_pdf' %}" method="post">
     {% csrf_token %}
     <button type="submit">Generar PDF</button>
 </form>
+
+{% if error %}
+    <div class="alert alert-danger">
+        <strong>Error:</strong> {{ error }}
+    </div>
+{% elif success %}
+    <div class="alert alert-success">
+        <strong>Éxito:</strong> El PDF ha sido generado y se está descargando.
+    </div>
+{% endif %} 
+
 {% endblock %}

@@ -3,28 +3,33 @@ from lxml import etree
 import os
 from app import *
 
+from flask import send_from_directory
+
 app = Flask(__name__)
 
 @app.route('/clasificar', methods=['POST'])
 def clasificar():
     if 'file' not in request.files:
         return jsonify({"message": "No se encontró el archivo"}), 400
-    
+
     file = request.files['file']
     output_path = os.path.join("output", "salida.xml")
-    
-    # Procesa el archivo, analízalo y guarda el resultado en output_path
-    diccionario, empresas, mensajes = parse_xml(file)  # Asumiendo que parse_xml es tu función de procesamiento
-    resultados = classify_message(diccionario, mensajes, empresas)  # procesar_mensajes realiza la clasificación
-    
+    pdf_path = os.path.join("output", "reporte.pdf")  # Define la ruta del PDF
+
+    diccionario, empresas, mensajes = parse_xml(file)
+    resultados = classify_message(diccionario, mensajes, empresas)
     generate_output_xml(resultados, output_path)
-    
+
+    # Generar PDF
+    generate_pdf_from_xml(output_path, pdf_path)
+
     with open(output_path, 'r') as output_file:
         contenido_salida = output_file.read()
 
     return jsonify({
         "message": "Archivo procesado y salida generada",
-        "content": contenido_salida
+        "content": contenido_salida,
+        "pdf_path": pdf_path  # O puedes devolver la ruta o link del PDF si lo deseas
     }), 200
 
 @app.route('/analizar_mensaje', methods=['POST'])
@@ -49,5 +54,14 @@ def datos_procesados():
     # Enviar la respuesta en JSON
     return jsonify(resultado), 200
 
+@app.route('/descargar_pdf') 
+def descargar_pdf():
+    pdf_path = os.path.join("output", "reporte.pdf")
+    if os.path.exists(pdf_path):
+        return send_from_directory("output", "reporte.pdf", as_attachment=True)
+    else:
+        return jsonify({"message": "PDF no encontrado"}), 404
+
 if __name__ == '__main__':
     app.run(debug=True)
+
