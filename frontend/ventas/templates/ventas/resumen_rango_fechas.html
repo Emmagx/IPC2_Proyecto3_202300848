@@ -1,5 +1,5 @@
-{% extends 'ventas/base.html' %}
-{% block content %}
+{% extends 'ventas/peticiones.html' %}
+{% block extra_content %}
 <h2>Resumen de Clasificación por Rango de Fechas</h2>
 <form action="{% url 'resumen_rango_fechas' %}" method="post">
     {% csrf_token %}
@@ -47,5 +47,5 @@
             }
         });
     </script>
-{% endif %}
-{% endblock %} -->
+{% endif %}-->
+{% endblock %} 

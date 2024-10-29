@@ -1,6 +1,6 @@
-{% extends 'ventas/base.html' %}
+{% extends 'ventas/peticiones.html' %}
 
-{% block content %}
+{% block extra_content %}
 <h2>Generar Reporte en PDF</h2>
 <form action="{% url 'reporte_pdf' %}" method="post">
     {% csrf_token %}

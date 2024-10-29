@@ -4,6 +4,7 @@ class Mensaje:
         self.palabrasPositivas = 0
         self.palabrasNegativas = 0
         self.tipo = "Neutro"  # Predeterminado como Neutro
+        self.fecha = None
 
     def defineType(self):
         if self.palabrasPositivas > self.palabrasNegativas:

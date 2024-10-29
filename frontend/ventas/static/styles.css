@@ -235,14 +235,14 @@ footer p {
     flex: 1;
     margin: 10px;
 }
-/* .button-container {
+.button-container {
     display: flex;
     justify-content: space-between;
     gap: 10px;
     margin-top: 20px;
-    overflow-x: auto; /* Permite desplazamiento horizontal si es necesarios
-    white-space: nowrap; /* Evita que los botones se envuelvan en múltiples líneas
-} */
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+    white-space: nowrap; /* Evita que los botones se envuelvan en múltiples líneas */
+}
 
 
 /* .button-container form {

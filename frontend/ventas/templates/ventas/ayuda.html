@@ -1,13 +1,19 @@
 {% extends 'ventas/base.html' %}
-
+{% load static %}
 {% block content %}
 <h2>Ayuda</h2>
 <div>
     <h3>Información del Estudiante</h3>
-    <p>Nombre del estudiante: [Nombre]</p>
-    <p>Carnet: [Número de Carnet]</p>
+    <p>Nombre del estudiante: Brayan Emanuel Garcia</p>
+    <p>Carnet: 202300848</p>
 
     <h3>Documentación del Programa</h3>
-    <p>Este sistema permite la clasificación de mensajes basados en análisis de sentimientos...</p>
+
+    <!-- Enlace con imagen hacia la documentación -->
+    <div style="margin-top: 20px;">
+        <a href="https://github.com/Emmagx/IPC2_Proyecto3_202300848.git" target="_blank">
+            <img src="{% static 'images/github.png' %}" alt="Documentación" style="width: 100px; height: auto;">
+        </a>
+    </div>
 </div>
 {% endblock %}
