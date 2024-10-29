@@ -5,26 +5,28 @@
 <form id="formArchivo" method="POST" enctype="multipart/form-data" action="{% url 'cargar_archivo' %}">
     {% csrf_token %}
     <label for="archivo">Selecciona un archivo XML:</label>
-    <input type="file" name="archivo" id="archivo" accept=".xml">
+    <input type="file" name="archivo" id="archivo" accept=".xml" onchange="mostrarContenido(event)">
     <button type="submit">Enviar</button>
     <button type="button" onclick="limpiarSalida()">Limpiar</button>
 </form>
-
 
 <div class="contenedor-principal">
     <div class="contenedor-columnas">
         <div class="contenedor-archivo">
             <h3>Contenido del Archivo</h3>
-            <textarea id="contenidoArchivo" style="width: 100%; height: 200px;"></textarea>
+            <textarea id="contenidoArchivo" style="width: 100%; height: 200px;" readonly>{{ salida }}</textarea>
         </div>
         <div class="contenedor-salida">
             <h3>Salida de la API</h3>
-<textarea id="contenidoSalida" style="width: 100%; height: 200px;" readonly></textarea>
+            <textarea id="contenidoSalida" style="width: 100%; height: 200px;" readonly>{{ contenido_salida }}</textarea>
         </div>
     </div>
 </div>
 
 <script>
+// Código JavaScript existente...
+
+// Función para mostrar contenido del archivo XML
 function mostrarContenido(event) {
     const archivo = event.target.files[0];
     const reader = new FileReader();
@@ -34,30 +36,7 @@ function mostrarContenido(event) {
     reader.readAsText(archivo);
 }
 
-function getCSRFToken() {
-    return document.querySelector('[name=csrfmiddlewaretoken]').value;
-}
-
-function enviarContenido() {
-    const contenidoArchivo = document.getElementById('contenidoArchivo').value;
-    fetch("{% url 'cargar_archivo' %}", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': getCSRFToken()  // Obtiene el token dinámicamente
-        },
-        body: JSON.stringify({ contenidoArchivo })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('contenidoSalida').value = data.mensaje || 'Archivo procesado correctamente.';
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('contenidoSalida').value = 'Error al procesar el archivo.';
-    });
-}
-
+// Función para limpiar salida
 function limpiarSalida() {
     document.getElementById('contenidoArchivo').value = '';
     document.getElementById('contenidoSalida').value = '';
@@ -65,27 +44,7 @@ function limpiarSalida() {
     localStorage.removeItem('contenidoSalida');
 }
 
-// Función para guardar el contenido en localStorage
-function guardarContenido() {
-    const contenidoArchivo = document.getElementById('contenidoArchivo').value;
-    const contenidoSalida = document.getElementById('contenidoSalida').value;
-    localStorage.setItem('contenidoArchivo', contenidoArchivo);
-    localStorage.setItem('contenidoSalida', contenidoSalida);
-}
-
-// Función para cargar el contenido guardado
-function cargarContenido() {
-    if (localStorage.getItem('contenidoArchivo')) {
-        document.getElementById('contenidoArchivo').value = localStorage.getItem('contenidoArchivo');
-    }
-    if (localStorage.getItem('contenidoSalida')) {
-        document.getElementById('contenidoSalida').value = localStorage.getItem('contenidoSalida');
-    }
-}
-
-document.getElementById('contenidoArchivo').addEventListener('input', guardarContenido);
-document.getElementById('contenidoSalida').addEventListener('input', guardarContenido);
-window.onload = cargarContenido;
+// Funciones para guardar y cargar contenido en localStorage...
 </script>
 
 {% if mensaje %}
