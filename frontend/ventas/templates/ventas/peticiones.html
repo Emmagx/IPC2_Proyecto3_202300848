@@ -1,0 +1,23 @@
+<!-- ventas/templates/ventas/peticiones.html -->
+{% extends 'ventas/base.html' %}
+
+{% block content %}
+<h1>Peticiones</h1>
+<div class="button-container">
+    <form action="{% url 'consultar_datos' %}" method="get">
+        <button type="submit" class="button">Consultar Datos</button>
+    </form>
+    <form action="{% url 'resumen_clasificacion_fecha' %}" method="get">
+        <button type="submit" class="button">Resumen de clasificación por fecha</button>
+    </form>
+    <form action="{% url 'resumen_rango_fechas' %}" method="get">
+        <button type="submit" class="button">Resumen por rango de fechas</button>
+    </form>
+    <form action="{% url 'reporte_pdf' %}" method="get">
+        <button type="submit" class="button">Reporte en PDF</button>
+    </form>
+    <form action="{% url 'prueba_mensaje' %}" method="get">
+        <button type="submit" class="button">Prueba de mensaje</button>
+    </form>
+</div>
+{% endblock %}

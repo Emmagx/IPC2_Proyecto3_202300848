@@ -1,21 +1,14 @@
-from empresa import Empresa
 class Mensaje:
-    def __init__(self, empresa):
-        self.empresa = Empresa
-        self.tipo = ''
+    def __init__(self, texto):
+        self.texto = texto
         self.palabrasPositivas = 0
         self.palabrasNegativas = 0
+        self.tipo = "Neutro"  # Predeterminado como Neutro
 
-    def incrementarPos(self):
-        self.palabrasPositivas+=1
-        
-    def incrementarNeg(self):
-        self.palabrasNegativas+=1
-        
     def defineType(self):
         if self.palabrasPositivas > self.palabrasNegativas:
-            self.tipo = 'Positivo'
-        elif self.palabrasPositivas < self.palabrasNegativas:
-            self.tipo = 'Negativo'
+            self.tipo = "Positivo"
+        elif self.palabrasNegativas > self.palabrasPositivas:
+            self.tipo = "Negativo"
         else:
-            self.tipo = 'Neutral'
+            self.tipo = "Neutro"

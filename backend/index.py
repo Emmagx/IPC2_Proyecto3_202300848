@@ -7,37 +7,18 @@ app = Flask(__name__)
 
 @app.route('/clasificar', methods=['POST'])
 def clasificar():
+    if 'file' not in request.files:
+        return jsonify({"message": "No se encontró el archivo"}), 400
+    
     file = request.files['file']
+    output_path = os.path.join("output", "salida.xml")
     
-    # Parsear el archivo XML
-    diccionario, mensajes = parse_xml(file)
+    # Procesa el archivo, analízalo y guarda el resultado en output_path
+    diccionario, empresas, mensajes = parse_xml(file)  # Asumiendo que parse_xml es tu función de procesamiento
+    resultados = classify_message(diccionario, mensajes, empresas)  # procesar_mensajes realiza la clasificación
     
-    # Inicializar el diccionario de resultados
-    resultados = {
-        "total": 0,
-        "positivos": 0,
-        "negativos": 0,
-        "neutros": 0,
-        "empresas": {}
-    }
-    
-    # Procesar cada mensaje y clasificar su sentimiento
-    for mensaje in mensajes:
-        sentimiento = classify_message(diccionario, mensaje)
-        
-        # Incrementar el contador correspondiente
-        if sentimiento in resultados:
-            resultados[sentimiento] += 1
-        else:
-            resultados[sentimiento] = 1
-            
-        resultados["total"] += 1
-
-    # Generar el archivo de salida XML
-    output_path = "output/salida.xml"
     generate_output_xml(resultados, output_path)
     
-    # Leer el contenido del archivo procesado
     with open(output_path, 'r') as output_file:
         contenido_salida = output_file.read()
 

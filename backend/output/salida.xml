@@ -3,10 +3,25 @@
   <respuesta>
     <mensajes>
       <total>20</total>
-      <positivos>0</positivos>
-      <negativos>0</negativos>
-      <neutros>0</neutros>
+      <positivos>11</positivos>
+      <negativos>7</negativos>
+      <neutros>2</neutros>
     </mensajes>
-    <analisis/>
+    <empresa nombre="usac">
+      <mensajes>
+        <total>12</total>
+        <positivos>8</positivos>
+        <negativos>3</negativos>
+        <neutros>1</neutros>
+      </mensajes>
+    </empresa>
+    <empresa nombre="banco nacional">
+      <mensajes>
+        <total>9</total>
+        <positivos>3</positivos>
+        <negativos>4</negativos>
+        <neutros>2</neutros>
+      </mensajes>
+    </empresa>
   </respuesta>
 </lista_respuestas>

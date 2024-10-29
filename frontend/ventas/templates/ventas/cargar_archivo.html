@@ -2,12 +2,14 @@
 
 {% block content %}
 <h2>Cargar Archivo</h2>
-<form id="formArchivo" enctype="multipart/form-data">
+<form id="formArchivo" method="POST" enctype="multipart/form-data" action="{% url 'cargar_archivo' %}">
+    {% csrf_token %}
     <label for="archivo">Selecciona un archivo XML:</label>
-    <input type="file" id="archivo" accept=".xml" onchange="mostrarContenido(event)">
-    <button type="button" onclick="enviarContenido()">Enviar</button>
+    <input type="file" name="archivo" id="archivo" accept=".xml">
+    <button type="submit">Enviar</button>
     <button type="button" onclick="limpiarSalida()">Limpiar</button>
 </form>
+
 
 <div class="contenedor-principal">
     <div class="contenedor-columnas">
@@ -32,19 +34,22 @@ function mostrarContenido(event) {
     reader.readAsText(archivo);
 }
 
+function getCSRFToken() {
+    return document.querySelector('[name=csrfmiddlewaretoken]').value;
+}
+
 function enviarContenido() {
     const contenidoArchivo = document.getElementById('contenidoArchivo').value;
     fetch("{% url 'cargar_archivo' %}", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': '{{ csrf_token }}'  // Django CSRF Token
+            'X-CSRFToken': getCSRFToken()  // Obtiene el token dinámicamente
         },
         body: JSON.stringify({ contenidoArchivo })
     })
     .then(response => response.json())
     .then(data => {
-        // Mostrar la respuesta de la API en el contenedor de salida
         document.getElementById('contenidoSalida').value = data.mensaje || 'Archivo procesado correctamente.';
     })
     .catch(error => {

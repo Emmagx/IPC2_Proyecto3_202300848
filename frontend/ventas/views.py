@@ -13,7 +13,7 @@ def cargar_archivo(request):
     if request.method == 'POST' and 'archivo' in request.FILES:
         archivo = request.FILES['archivo']
         
-        # Guardar archivo en el servidor temporalmente
+        # Guardar el archivo temporalmente en el servidor
         fs = FileSystemStorage()
         filename = fs.save(archivo.name, archivo)
         file_path = fs.path(filename)
@@ -23,9 +23,9 @@ def cargar_archivo(request):
             response = requests.post(f"{API_BASE_URL}/clasificar", files=files)
         
         if response.status_code == 200:
-            data = response.text  # Recibir el contenido XML como texto
-            salida = "Archivo procesado correctamente"
-            contenido_salida = data
+            data = response.json()
+            salida = data.get('message', 'Archivo procesado correctamente')
+            contenido_salida = data.get('content', '')
         else:
             salida = "Error al procesar el archivo"
         
@@ -112,3 +112,6 @@ def ayuda(request):
 
 def reporte_pdf(request):
     return render(request, 'ventas/reporte_pdf.html')
+
+def peticiones(request):
+    return render(request, 'ventas/peticiones.html')
