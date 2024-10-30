@@ -2,12 +2,28 @@
 <lista_respuestas>
   <respuesta>
     <mensajes>
-      <total>5</total>
-      <positivos>2</positivos>
-      <negativos>1</negativos>
-      <neutros>2</neutros>
+      <total>11</total>
+      <positivos>5</positivos>
+      <negativos>5</negativos>
+      <neutros>1</neutros>
     </mensajes>
-    <empresa nombre="nike">
+    <empresa nombre="apple">
+      <mensajes>
+        <total>1</total>
+        <positivos>0</positivos>
+        <negativos>0</negativos>
+        <neutros>1</neutros>
+      </mensajes>
+    </empresa>
+    <empresa nombre="microsoft">
+      <mensajes>
+        <total>1</total>
+        <positivos>0</positivos>
+        <negativos>1</negativos>
+        <neutros>0</neutros>
+      </mensajes>
+    </empresa>
+    <empresa nombre="google">
       <mensajes>
         <total>2</total>
         <positivos>1</positivos>
@@ -15,20 +31,36 @@
         <neutros>0</neutros>
       </mensajes>
     </empresa>
-    <empresa nombre="adidas">
+    <empresa nombre="amazon">
       <mensajes>
         <total>2</total>
-        <positivos>1</positivos>
+        <positivos>2</positivos>
         <negativos>0</negativos>
-        <neutros>1</neutros>
+        <neutros>0</neutros>
       </mensajes>
     </empresa>
-    <empresa nombre="walmart">
+    <empresa nombre="ibm">
       <mensajes>
         <total>2</total>
         <positivos>1</positivos>
+        <negativos>1</negativos>
+        <neutros>0</neutros>
+      </mensajes>
+    </empresa>
+    <empresa nombre="tesla">
+      <mensajes>
+        <total>1</total>
+        <positivos>1</positivos>
         <negativos>0</negativos>
-        <neutros>1</neutros>
+        <neutros>0</neutros>
+      </mensajes>
+    </empresa>
+    <empresa nombre="oracle">
+      <mensajes>
+        <total>1</total>
+        <positivos>0</positivos>
+        <negativos>1</negativos>
+        <neutros>0</neutros>
       </mensajes>
     </empresa>
   </respuesta>
